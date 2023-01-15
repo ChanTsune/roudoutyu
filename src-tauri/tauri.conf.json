@@ -55,10 +55,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 400,
         "resizable": true,
-        "title": "roudoutyu",
-        "width": 800
+        "title": "労働中",
+        "width": 600
       }
     ]
   }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
+import { MyTimer } from "./timer";
 import "./App.css";
 
 function App() {
@@ -14,9 +15,8 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Welcome to Tauri!</h1>
-
-      <div className="row">
+      <MyTimer seconds={600}/>
+      {/* <div className="row">
         <a href="https://vitejs.dev" target="_blank">
           <img src="/vite.svg" className="logo vite" alt="Vite logo" />
         </a>
@@ -42,7 +42,7 @@ function App() {
           </button>
         </div>
       </div>
-      <p>{greetMsg}</p>
+      <p>{greetMsg}</p> */}
     </div>
   );
 }
