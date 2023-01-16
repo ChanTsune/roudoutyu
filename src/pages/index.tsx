@@ -1,8 +1,7 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
-import { MyTimer } from "./timer";
-import "./App.css";
+import Image from "next/image";
+import { MyTimer } from "../timer";
 
 function App() {
   const [time, setTime] = useState(0);
