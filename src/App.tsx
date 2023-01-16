@@ -5,44 +5,61 @@ import { MyTimer } from "./timer";
 import "./App.css";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+  const [time, setTime] = useState(0);
+  const [salaryParSec, setSalaryParSec] = useState(300);
+  const [started, setStarted] = useState(false);
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name }));
+    // setGreetMsg(await invoke("greet", { name }));
   }
 
   return (
     <div className="container">
-      <MyTimer seconds={600}/>
-      {/* <div className="row">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <div className="row">
+      { 
+        started
+        ? <MyTimer seconds={time} salaryParSec={salaryParSec}/> 
+        : 
+        <div className="row">
         <div>
+          <p>労働時間を入力</p>
           <input
-            id="greet-input"
-            onChange={(e) => setName(e.currentTarget.value)}
-            placeholder="Enter a name..."
+            id="time-input"
+            onChange={(e) => {
+              let time = parseInt(e.currentTarget.value);
+              if (Number.isInteger(time)) {
+                setTime(time);
+              }
+            }}
+            placeholder="Enter a seconds..."
           />
-          <button type="button" onClick={() => greet()}>
-            Greet
+          <p>秒間の増加額を入力</p>
+          <input
+            id="salary-input"
+            onChange={(e) => {
+              let s = parseInt(e.currentTarget.value);
+              if (Number.isInteger(s)) {
+                setSalaryParSec(s);
+              } else {
+                setSalaryParSec(e.currentTarget.value as unknown as number);
+              }
+            }}
+            value={salaryParSec}
+            placeholder="Enter a salary par seconds..."
+          />
+          <p></p>
+          <button type="button" onClick={() => {
+            if (Number.isInteger(time) && time > 0 && Number.isInteger(salaryParSec)) {
+              setStarted(true);
+            } else {
+              window.alert("整数値で入力してください");
+            }
+            }}>
+            Start
           </button>
         </div>
       </div>
-      <p>{greetMsg}</p> */}
+      }
     </div>
   );
 }

@@ -3,7 +3,10 @@ import { useTimer } from "react-timer-hook";
 const timerFormat = (n: number) => n.toString().padStart(2, "0");
 
 
-function MyTimerInternal({ expiryTimestamp, initialSeconds }: { expiryTimestamp: Date, initialSeconds: number }) {
+function MyTimerInternal(
+  { expiryTimestamp, initialSeconds, salaryParSec }:
+  { expiryTimestamp: Date, initialSeconds: number, salaryParSec: number }
+  ) {
     const {
       seconds,
       minutes,
@@ -24,15 +27,13 @@ function MyTimerInternal({ expiryTimestamp, initialSeconds }: { expiryTimestamp:
       });
     const totalSeconds = (((days * 24 + hours) * 60 + minutes) * 60) + seconds;
     const elapsedSeconds = initialSeconds - totalSeconds;
-    const gotMoney = elapsedSeconds * 300;
+    const gotMoney = elapsedSeconds * salaryParSec;
     return (
       <div style={{ textAlign: "center" }}>
         <h1>労働残り時間</h1>
-        <br/>
-        <div style={{ fontSize: "100px" }}>
+        <div style={{ fontSize: "6.25rem", height: "6.5rem" }}>
           <span>{timerFormat((days * 24 + hours) * 60 + minutes)}</span>:<span>{timerFormat(seconds)}</span>
         </div>
-        <br/>
         <p>{isRunning ? "Working" : "Not working"}</p>
         <h1>{formatter.format(gotMoney)}</h1>
         <button onClick={start}>Start</button>
@@ -52,8 +53,8 @@ function MyTimerInternal({ expiryTimestamp, initialSeconds }: { expiryTimestamp:
     );
 }
 
-export function MyTimer({ seconds }: { seconds: number }) {
+export function MyTimer({ seconds, salaryParSec }: { seconds: number, salaryParSec: number }) {
     const time = new Date();
-    time.setSeconds(time.getSeconds() + seconds); // 10 minutes timer
-    return <MyTimerInternal expiryTimestamp={time} initialSeconds={seconds}/>
+    time.setSeconds(time.getSeconds() + seconds);
+    return <MyTimerInternal expiryTimestamp={time} initialSeconds={seconds} salaryParSec={salaryParSec}/>
 }
