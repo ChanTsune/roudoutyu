@@ -3,26 +3,29 @@ import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
 import { MyTimer } from "./timer";
 import "./App.css";
+import { getLangDescription } from "./i18n/i18n";
 
 function App() {
   const [time, setTime] = useState(0);
   const [salaryParSec, setSalaryParSec] = useState(300);
   const [started, setStarted] = useState(false);
+  const [lang, setLang] = useState('ja');
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
     // setGreetMsg(await invoke("greet", { name }));
   }
 
+  const desc = getLangDescription(lang)
   return (
     <div className="container">
       { 
         started
-        ? <MyTimer seconds={time} salaryParSec={salaryParSec}/> 
+        ? <MyTimer seconds={time} salaryParSec={salaryParSec} desc={desc}/> 
         : 
         <div className="row">
         <div>
-          <p>労働時間を入力</p>
+          <p>{desc.Time}</p>
           <input
             id="time-input"
             onChange={(e) => {
@@ -31,9 +34,9 @@ function App() {
                 setTime(time);
               }
             }}
-            placeholder="Enter a seconds..."
+            placeholder={desc.TimePlaceHolder}
           />
-          <p>秒間の増加額を入力</p>
+          <p>{desc.SalaryParSec}</p>
           <input
             id="salary-input"
             onChange={(e) => {
@@ -45,17 +48,24 @@ function App() {
               }
             }}
             value={salaryParSec}
-            placeholder="Enter a salary par seconds..."
+            placeholder={desc.SalaryParSecHolder}
           />
           <p></p>
           <button type="button" onClick={() => {
             if (Number.isInteger(time) && time > 0 && Number.isInteger(salaryParSec)) {
               setStarted(true);
             } else {
-              window.alert("整数値で入力してください");
+              window.alert(desc.FloatError);
             }
-            }}>
+          }}>
             Start
+          </button>
+          <p></p>
+          <button type="button" onClick={() => {setLang('en');}}>
+            {'English'}
+          </button>
+          <button type="button" onClick={() => {setLang('ja');}}>
+            {'日本語'}
           </button>
         </div>
       </div>
