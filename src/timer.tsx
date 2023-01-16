@@ -31,9 +31,11 @@ function MyTimerInternal(
     return (
       <div style={{ textAlign: "center" }}>
         <h1>労働残り時間</h1>
-        <div style={{ fontSize: "6.25rem", height: "6.5rem" }}>
+        <br/>
+        <div style={{ fontSize: "6.25rem" }}>
           <span>{timerFormat((days * 24 + hours) * 60 + minutes)}</span>:<span>{timerFormat(seconds)}</span>
         </div>
+        <br/>
         <p>{isRunning ? "Working" : "Not working"}</p>
         <h1>{formatter.format(gotMoney)}</h1>
         <button onClick={start}>Start</button>
