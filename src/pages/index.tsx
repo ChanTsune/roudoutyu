@@ -2,7 +2,6 @@ import { useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import Image from "next/image";
 import { MyTimer } from "../timer";
-import "./App.css";
 import { getLangDescription } from "../i18n/i18n";
 
 function App() {
