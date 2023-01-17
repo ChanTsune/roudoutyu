@@ -1,9 +1,9 @@
 [package]
 name = "roudoutyu"
-version = "0.1.0"
+version = "0.2.0"
 description = "A Tauri App"
-authors = ["you"]
-license = ""
+authors = ["ChanTsune"]
+license = "MIT"
 repository = ""
 edition = "2021"
 rust-version = "1.57"
