@@ -8,7 +8,7 @@ function App() {
   const [time, setTime] = useState(0);
   const [salaryParSec, setSalaryParSec] = useState(300);
   const [started, setStarted] = useState(false);
-  const [lang, setLang] = useState('ja');
+  const [lang, setLang] = useState("ja");
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -28,7 +28,7 @@ function App() {
           <input
             id="time-input"
             onChange={(e) => {
-              let time = parseInt(e.currentTarget.value);
+              const time = parseInt(e.currentTarget.value);
               if (Number.isInteger(time)) {
                 setTime(time);
               }
@@ -39,7 +39,7 @@ function App() {
           <input
             id="salary-input"
             onChange={(e) => {
-              let s = parseInt(e.currentTarget.value);
+              const s = parseInt(e.currentTarget.value);
               if (Number.isInteger(s)) {
                 setSalaryParSec(s);
               } else {
@@ -60,11 +60,11 @@ function App() {
             Start
           </button>
           <p></p>
-          <button type="button" onClick={() => {setLang('en');}}>
-            {'English'}
+          <button type="button" onClick={() => {setLang("en");}}>
+            {"English"}
           </button>
-          <button type="button" onClick={() => {setLang('ja');}}>
-            {'日本語'}
+          <button type="button" onClick={() => {setLang("ja");}}>
+            {"日本語"}
           </button>
         </div>
       </div>

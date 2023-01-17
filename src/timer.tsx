@@ -23,8 +23,8 @@ function MyTimerInternal(
       onExpire: () => console.warn("onExpire called"),
     });
     const formatter = new Intl.NumberFormat("ja-JP", {
-        style: 'currency',
-        currency: 'JPY'
+        style: "currency",
+        currency: "JPY"
       });
     const totalSeconds = (((days * 24 + hours) * 60 + minutes) * 60) + seconds;
     const elapsedSeconds = initialSeconds - totalSeconds;
