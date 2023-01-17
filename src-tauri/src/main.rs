@@ -2,6 +2,13 @@
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
+mod version;
+
+#[tauri::command]
+fn get_current_version() -> String {
+    version::CURRENT_VERSION.to_string()
+}
+
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
