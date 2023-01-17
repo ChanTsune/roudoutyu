@@ -3,8 +3,8 @@ import { en } from "./locales/en";
 import { ja } from "./locales/ja";
 
 const Languages = [
-    'en',
-    'ja',
+    "en",
+    "ja",
 ]
 
 const Descriptions = {
