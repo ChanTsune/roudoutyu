@@ -3,7 +3,7 @@
     windows_subsystem = "windows"
 )]
 use crate::version::is_this_latest_version;
-use tauri::{CustomMenuItem, Menu, MenuEntry};
+use tauri::{CustomMenuItem, Menu, MenuEntry, Submenu};
 
 mod version;
 
@@ -62,8 +62,7 @@ fn main() {
                 m => println!("{}", m),
             };
         })
-        .invoke_handler(tauri::generate_handler![greet])
-        .invoke_handler(tauri::generate_handler![get_current_version])
+        .invoke_handler(tauri::generate_handler![greet, get_current_version])
         .run(context)
         .expect("error while running tauri application");
 }
