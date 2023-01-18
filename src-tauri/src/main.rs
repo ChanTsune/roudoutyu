@@ -32,7 +32,9 @@ fn main() {
             .insert(1, MenuEntry::CustomItem(update_check));
     }
     #[cfg(not(target_os = "macos"))]
-    menu.add_submenu(Submenu::new("Tools", Menu::new().add_item(update_check)));
+    {
+        menu = menu.add_submenu(Submenu::new("Tools", Menu::new().add_item(update_check)));
+    }
 
     tauri::Builder::default()
         .menu(menu)
