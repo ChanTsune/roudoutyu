@@ -1,4 +1,5 @@
 # roudoutyu
+
 逃走中みたいに労働時間が増える毎に給与カウンターが上昇してくやつ
 
 ![Sample Image](./docs/images/sample.png)
