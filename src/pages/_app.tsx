@@ -11,19 +11,25 @@ import "../App.css";
 export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const unlisten = (async () =>
-      await listen("check-update", async (event) => {
-        console.log(event.payload);
-        if (event.payload as boolean) {
-          message("This is latest version of 労働中");
-        } else {
-          const result = await ask("Open download page?", "New version of 労働中 are available!");
-          if (result) {
-            open("https://github.com/ChanTsune/roudoutyu/releases/latest");
+      await listen("check-update", (event) => {
+        void (async (event) => {
+          if (event.payload as boolean) {
+            void message("This is latest version of 労働中");
+          } else {
+            const result = await ask(
+              "Open download page?",
+              "New version of 労働中 are available!"
+            );
+            if (result) {
+              void open(
+                "https://github.com/ChanTsune/roudoutyu/releases/latest"
+              );
+            }
           }
-        }
+        })(event);
       }))();
     return () => {
-      (async () => (await unlisten)())();
+      void (async () => (await unlisten)())();
     };
   }, []);
   return <Component {...pageProps} />;
