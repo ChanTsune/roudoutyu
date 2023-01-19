@@ -41,25 +41,10 @@ fn main() {
         .on_menu_event(|event| {
             match event.menu_item_id() {
                 MENU_UPDATE_CHECK => {
-                    if is_this_latest_version() {
-                        event
-                            .window()
-                            .eval("alert('This is latest version of 労働中')")
-                            .unwrap();
-                    } else {
-                        event
-                            .window()
-                            .eval(
-                                r##"
-                        alert('New version of 労働中 are available!');
-                        window.open('https://github.com/ChanTsune/roudoutyu/releases/latest');
-                        console.log("done!");
-                        "##,
-                            )
-                            .unwrap();
-                        webbrowser::open("https://github.com/ChanTsune/roudoutyu/releases/latest")
-                            .unwrap();
-                    }
+                    event
+                        .window()
+                        .emit("check-update", is_this_latest_version())
+                        .unwrap();
                 }
                 m => println!("{}", m),
             };
