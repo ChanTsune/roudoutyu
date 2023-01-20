@@ -9,5 +9,8 @@ export const en: Descritption = {
   numberError: "Please Enter Numer!",
     RemainingTime: "Remaining Working hours",
     isWorking: "Working",
-    isNotWorking: "Not working",
+  isNotWorking: "Not working",
+  timer: "timer",
+  settings: "settings",
+  language: "language",
 };

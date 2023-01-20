@@ -3,7 +3,6 @@ import { Descritption } from "./i18n/description";
 
 const timerFormat = (n: number) => n.toString().padStart(2, "0");
 
-
 function WorkTimerInternal(
   { expiryTimestamp, initialSeconds, salaryParSec, desc }:
   { expiryTimestamp: Date, initialSeconds: number, salaryParSec: number, desc:Descritption }

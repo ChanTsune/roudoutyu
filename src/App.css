@@ -1,3 +1,8 @@
+.application {
+  display: flex;
+  height: 100vh;
+}
+
 .sidebar {
   padding: 8px;
   background-color: #101010;

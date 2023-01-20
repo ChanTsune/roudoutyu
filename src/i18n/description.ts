@@ -7,7 +7,10 @@ export type Descritption = {
   numberError: string;
     RemainingTime: string;
     isWorking: string;
-    isNotWorking: string;
+  isNotWorking: string;
+  timer: string;
+  settings: string;
+  language: string;
 };
 
 export function initDescription(): Descritption {
@@ -20,6 +23,9 @@ export function initDescription(): Descritption {
     numberError: "",
         RemainingTime: "",
         isWorking: "",
-        isNotWorking: "",
+    isNotWorking: "",
+    timer: "",
+    settings: "",
+    language: "",
   };
 }

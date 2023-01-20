@@ -9,5 +9,8 @@ export const ja: Descritption = {
   numberError: "数値で入力してください",
     RemainingTime: "労働残り時間",
     isWorking: "Working",
-    isNotWorking: "Not working",
+  isNotWorking: "Not working",
+  timer: "タイマー",
+  settings: "設定",
+  language: "言語",
 };

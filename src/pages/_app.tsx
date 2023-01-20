@@ -41,15 +41,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       name: "Timer",
       href: "/",
     },
+    {
+      name: "Settings",
+      href: "/settings",
+    },
   ];
   return (
     <RecoilRoot>
-      <div
-        style={{
-          display: "flex",
-          height: "100vh",
-        }}
-      >
+      <div className="application">
         <aside
           className={openSideMenu ? "sidebar" : "sidebar closed"}
           style={{
