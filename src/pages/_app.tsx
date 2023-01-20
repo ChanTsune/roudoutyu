@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import Link from "next/link";
 import { listen } from "@tauri-apps/api/event";
 import { open } from "@tauri-apps/api/shell";
 import { ask, message } from "@tauri-apps/api/dialog";
@@ -33,9 +34,39 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       void (async () => (await unlisten)())();
     };
   }, []);
+
+  const menuItems = [
+    {
+      name: "Timer",
+      href: "/",
+    },
+  ];
   return (
     <RecoilRoot>
-      <Component {...pageProps} />
+      <div
+        style={{
+          display: "flex",
+          height: "100vh",
+        }}
+      >
+        <aside
+          className="sidebar"
+          style={{
+            flexGrow: 1,
+          }}
+        >
+          {menuItems.map((item) => {
+            return (
+              <Link className="item" href={item.href} key={item.name}>
+                {item.name}
+              </Link>
+            );
+          })}
+        </aside>
+        <main style={{ flexGrow: 4 }}>
+          <Component {...pageProps} />
+        </main>
+      </div>
     </RecoilRoot>
   );
 }

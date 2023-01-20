@@ -55,10 +55,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 400,
+        "height": 500,
         "resizable": true,
         "title": "労働中",
-        "width": 600
+        "width": 700
       }
     ]
   }
