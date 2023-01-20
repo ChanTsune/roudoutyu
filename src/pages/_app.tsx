@@ -3,6 +3,7 @@ import { listen } from "@tauri-apps/api/event";
 import { open } from "@tauri-apps/api/shell";
 import { ask, message } from "@tauri-apps/api/dialog";
 import { useEffect } from "react";
+import { RecoilRoot } from "recoil";
 
 import "../style.css";
 import "../App.css";
@@ -32,5 +33,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       void (async () => (await unlisten)())();
     };
   }, []);
-  return <Component {...pageProps} />;
+  return (
+    <RecoilRoot>
+      <Component {...pageProps} />
+    </RecoilRoot>
+  );
 }

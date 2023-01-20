@@ -14,7 +14,8 @@
     "next": "^13.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-timer-hook": "^3.0.5"
+    "react-timer-hook": "^3.0.5",
+    "recoil": "^0.7.6"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.1.2",

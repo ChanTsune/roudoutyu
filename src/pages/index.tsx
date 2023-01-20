@@ -16,7 +16,7 @@ function App() {
     // setGreetMsg(await invoke("greet", { name }));
   }
 
-  const desc = getLangDescription(lang)
+  const desc = getLangDescription(lang);
   return (
     <div className="container">
       { 
