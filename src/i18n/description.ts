@@ -1,27 +1,25 @@
-
 export type Descritption = {
     Title: string;
     Time: string;
     TimePlaceHolder: string;
     SalaryParSec: string;
     SalaryParSecHolder: string;
-    FloatError: string;
+  numberError: string;
     RemainingTime: string;
     isWorking: string;
     isNotWorking: string;
-}
+};
 
-export function initDescription():Descritption{
-    const desc:Descritption={
+export function initDescription(): Descritption {
+  return {
         Title: "",
         Time: "",
         TimePlaceHolder: "",
         SalaryParSec: "",
         SalaryParSecHolder: "",
-        FloatError: "",
+    numberError: "",
         RemainingTime: "",
         isWorking: "",
         isNotWorking: "",
-    }
-    return desc
+  };
 }

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
+import { message } from "@tauri-apps/api/dialog";
 import Image from "next/image";
 import { MyTimer } from "../timer";
 import { getLangDescription } from "../i18n/i18n";
 
 function App() {
-  const [time, setTime] = useState(0);
-  const [salaryParSec, setSalaryParSec] = useState(300);
+  const [time, setTime] = useState("0");
+  const [salaryParSec, setSalaryParSec] = useState("300");
   const [started, setStarted] = useState(false);
   const [lang, setLang] = useState("ja");
 
@@ -20,7 +21,7 @@ function App() {
     <div className="container">
       { 
         started
-        ? <MyTimer seconds={time} salaryParSec={salaryParSec} desc={desc}/> 
+        ? <MyTimer seconds={parseInt(time)} salaryParSec={parseFloat(salaryParSec)} desc={desc}/>
         : 
         <div className="row">
         <div>
@@ -28,10 +29,7 @@ function App() {
           <input
             id="time-input"
             onChange={(e) => {
-              const time = parseInt(e.currentTarget.value);
-              if (Number.isInteger(time)) {
-                setTime(time);
-              }
+              setTime(e.currentTarget.value);
             }}
             placeholder={desc.TimePlaceHolder}
           />
@@ -39,22 +37,18 @@ function App() {
           <input
             id="salary-input"
             onChange={(e) => {
-              const s = parseInt(e.currentTarget.value);
-              if (Number.isInteger(s)) {
-                setSalaryParSec(s);
-              } else {
-                setSalaryParSec(e.currentTarget.value as unknown as number);
-              }
+              setSalaryParSec(e.currentTarget.value);
             }}
             value={salaryParSec}
             placeholder={desc.SalaryParSecHolder}
           />
           <p></p>
           <button type="button" onClick={() => {
-            if (Number.isInteger(time) && time > 0 && Number.isInteger(salaryParSec)) {
+            const iTime = parseInt(time);
+            if (Number.isInteger(iTime) && iTime > 0 && !Number.isNaN(parseFloat(salaryParSec.toString()))) {
               setStarted(true);
             } else {
-              window.alert(desc.FloatError);
+              void message(desc.numberError);
             }
           }}>
             Start
