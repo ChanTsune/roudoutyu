@@ -1,3 +1,23 @@
+.sidebar {
+  padding: 8px;
+  background-color: #202020;
+  max-width: 10rem;
+  min-width: 5rem;
+}
+.sidebar > .item {
+  border-radius: 4px;
+  color: #ffffff;
+  display: block;
+  padding: 8px;
+  font-weight: 1000;
+}
+.sidebar > .item:hover {
+  border-left: 4px solid #24c8db;
+  background-color: #2f2f2f;
+  padding-right: 4px;
+  transition: background-color .25s, border-left-width .25s, padding-right .25s;
+}
+
 .logo {
   padding: 1.5em !important;
 }
