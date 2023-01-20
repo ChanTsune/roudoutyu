@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import { message } from "@tauri-apps/api/dialog";
+import { languageAtom } from "../atoms/language";
 import Image from "next/image";
 import WorkTimer from "../timer";
 import { getLangDescription } from "../i18n/i18n";
+import { useRecoilState } from "recoil";
 
 function App() {
   const [time, setTime] = useState("0");
   const [salaryParSec, setSalaryParSec] = useState("300");
   const [started, setStarted] = useState(false);
-  const [lang, setLang] = useState("ja");
+  const [lang, setLang] = useRecoilState(languageAtom);
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -54,11 +56,11 @@ function App() {
             Start
           </button>
           <p></p>
-          <button type="button" onClick={() => {setLang("en");}}>
-            {"English"}
+          <button type="button" onClick={() => setLang("en")}>
+            English
           </button>
-          <button type="button" onClick={() => {setLang("ja");}}>
-            {"日本語"}
+          <button type="button" onClick={() => setLang("ja")}>
+            日本語
           </button>
         </div>
       </div>
