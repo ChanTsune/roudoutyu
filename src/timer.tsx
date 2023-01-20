@@ -4,7 +4,7 @@ import { Descritption } from "./i18n/description";
 const timerFormat = (n: number) => n.toString().padStart(2, "0");
 
 
-function MyTimerInternal(
+function WorkTimerInternal(
   { expiryTimestamp, initialSeconds, salaryParSec, desc }:
   { expiryTimestamp: Date, initialSeconds: number, salaryParSec: number, desc:Descritption }
   ) {
@@ -56,8 +56,8 @@ function MyTimerInternal(
     );
 }
 
-export function MyTimer({ seconds, salaryParSec, desc }: { seconds: number, salaryParSec: number, desc: Descritption }) {
+export default function WorkTimer({ seconds, salaryParSec, desc }: { seconds: number, salaryParSec: number, desc: Descritption }) {
     const time = new Date();
     time.setSeconds(time.getSeconds() + seconds);
-    return <MyTimerInternal expiryTimestamp={time} initialSeconds={seconds} salaryParSec={salaryParSec} desc={desc}/>
+    return <WorkTimerInternal expiryTimestamp={time} initialSeconds={seconds} salaryParSec={salaryParSec} desc={desc}/>
 }

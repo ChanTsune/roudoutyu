@@ -2,7 +2,7 @@ import { useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import { message } from "@tauri-apps/api/dialog";
 import Image from "next/image";
-import { MyTimer } from "../timer";
+import WorkTimer from "../timer";
 import { getLangDescription } from "../i18n/i18n";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
     <div className="container">
       { 
         started
-        ? <MyTimer seconds={parseInt(time)} salaryParSec={parseFloat(salaryParSec)} desc={desc}/>
+        ? <WorkTimer seconds={parseInt(time)} salaryParSec={parseFloat(salaryParSec)} desc={desc}/>
         : 
         <div className="row">
         <div>
