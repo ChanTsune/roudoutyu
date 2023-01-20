@@ -6,8 +6,8 @@ export const en: Descritption = {
     TimePlaceHolder: "Enter a seconds...",
     SalaryParSec: "Salary Par Second",
     SalaryParSecHolder: "Enter a salary par seconds...",
-    FloatError: "Please Enter Integer!",
+  numberError: "Please Enter Numer!",
     RemainingTime: "Remaining Working hours",
     isWorking: "Working",
     isNotWorking: "Not working",
-}
+};
