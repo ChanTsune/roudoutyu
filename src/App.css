@@ -1,8 +1,20 @@
 .sidebar {
   padding: 8px;
-  background-color: #202020;
+  background-color: #101010;
   max-width: 10rem;
   min-width: 5rem;
+  overflow: hidden;
+}
+.sidebar.closed {
+  width: 0;
+  min-width: 0;
+  max-width: 0;
+}
+.sidebar.closed:hover {
+  width: 0;
+  min-width: 0;
+  max-width: 0;
+  background-color: #1f1f1f;
 }
 .sidebar > .item {
   border-radius: 4px;
@@ -15,7 +27,8 @@
   border-left: 4px solid #24c8db;
   background-color: #2f2f2f;
   padding-right: 4px;
-  transition: background-color .25s, border-left-width .25s, padding-right .25s;
+  transition: background-color 0.25s, border-left-width 0.25s,
+    padding-right 0.25s;
 }
 
 .logo {
