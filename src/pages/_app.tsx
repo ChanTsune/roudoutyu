@@ -3,7 +3,7 @@ import Link from "next/link";
 import { listen } from "@tauri-apps/api/event";
 import { open } from "@tauri-apps/api/shell";
 import { ask, message } from "@tauri-apps/api/dialog";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RecoilRoot } from "recoil";
 
 import "../style.css";
@@ -11,6 +11,7 @@ import "../App.css";
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const [openSideMenu, setOpenSideMenu] = useState(false);
   useEffect(() => {
     const unlisten = (async () =>
       await listen("check-update", (event) => {
@@ -50,18 +51,20 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         }}
       >
         <aside
-          className="sidebar"
+          className={openSideMenu ? "sidebar" : "sidebar closed"}
           style={{
-            flexGrow: 1,
+            flexGrow: openSideMenu ? 1 : 0,
           }}
+          onClick={() => setOpenSideMenu((v) => !v)}
         >
-          {menuItems.map((item) => {
-            return (
-              <Link className="item" href={item.href} key={item.name}>
-                {item.name}
-              </Link>
-            );
-          })}
+          {openSideMenu &&
+            menuItems.map((item) => {
+              return (
+                <Link className="item" href={item.href} key={item.name}>
+                  {item.name}
+                </Link>
+              );
+            })}
         </aside>
         <main style={{ flexGrow: 4 }}>
           <Component {...pageProps} />
