@@ -4,7 +4,7 @@ version = "0.3.0"
 description = "A Tauri App"
 authors = ["ChanTsune"]
 license = "MIT"
-repository = ""
+repository = "https://github.com/ChanTsune/roudoutyu"
 edition = "2021"
 rust-version = "1.57"
 
