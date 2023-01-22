@@ -2,9 +2,11 @@
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
+use crate::settings::Settings;
 use crate::version::is_this_latest_version;
-use tauri::{CustomMenuItem, Menu, MenuEntry, Submenu};
+use tauri::{CustomMenuItem, Menu, MenuEntry};
 
+mod settings;
 mod version;
 
 #[tauri::command]
@@ -14,8 +16,13 @@ fn get_current_version() -> String {
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
+fn save_settings(settings: Settings) -> Result<bool, String> {
+    settings.save().map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+fn load_settings() -> Result<Settings, String> {
+    Settings::load().map_err(|e| e.to_string())
 }
 
 const MENU_UPDATE_CHECK: &str = "update check";
@@ -33,6 +40,7 @@ fn main() {
     }
     #[cfg(not(target_os = "macos"))]
     {
+        use tauri::Submenu;
         menu = menu.add_submenu(Submenu::new("Tools", Menu::new().add_item(update_check)));
     }
 
@@ -49,7 +57,11 @@ fn main() {
                 m => println!("{}", m),
             };
         })
-        .invoke_handler(tauri::generate_handler![greet, get_current_version])
+        .invoke_handler(tauri::generate_handler![
+            get_current_version,
+            save_settings,
+            load_settings,
+        ])
         .run(context)
         .expect("error while running tauri application");
 }
