@@ -22,7 +22,7 @@
     "@tauri-apps/cli": "^1.2.3",
     "@types/node": "^18.7.10",
     "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.6",
+    "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
     "eslint": "^8.34.0",
