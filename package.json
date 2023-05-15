@@ -18,7 +18,7 @@
     "recoil": "^0.7.7"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^13.2.4",
+    "@next/eslint-plugin-next": "^13.4.2",
     "@tauri-apps/cli": "^1.2.3",
     "@types/node": "^18.7.10",
     "@types/react": "^18.2.0",
