@@ -1175,7 +1175,7 @@ dependencies = [
  "once_cell",
  "regex",
  "reqwest",
- "semver 1.0.17",
+ "semver 1.0.18",
  "serde",
  "thiserror",
 ]
@@ -2680,7 +2680,7 @@ name = "roudoutyu"
 version = "0.3.0"
 dependencies = [
  "github_release_check",
- "semver 1.0.17",
+ "semver 1.0.18",
  "serde",
  "serde_json",
  "tauri",
@@ -2702,7 +2702,7 @@ version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bfa0f585226d2e68097d4f95d113b15b83a82e819ab25717ec0590d9584ef366"
 dependencies = [
- "semver 1.0.17",
+ "semver 1.0.18",
 ]
 
 [[package]]
@@ -2827,9 +2827,9 @@ dependencies = [
 
 [[package]]
 name = "semver"
-version = "1.0.17"
+version = "1.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bebd363326d05ec3e2f532ab7660680f3b02130d780c299bca73469d521bc0ed"
+checksum = "b0293b4b29daaf487284529cc2f5675b8e57c61f70167ba415a463651fd6a918"
 dependencies = [
  "serde",
 ]
@@ -3302,7 +3302,7 @@ dependencies = [
  "regex",
  "reqwest",
  "rfd",
- "semver 1.0.17",
+ "semver 1.0.18",
  "serde",
  "serde_json",
  "serde_repr",
@@ -3335,7 +3335,7 @@ dependencies = [
  "cargo_toml",
  "heck 0.4.0",
  "json-patch",
- "semver 1.0.17",
+ "semver 1.0.18",
  "serde",
  "serde_json",
  "tauri-utils",
@@ -3357,7 +3357,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "regex",
- "semver 1.0.17",
+ "semver 1.0.18",
  "serde",
  "serde_json",
  "sha2",
@@ -3442,7 +3442,7 @@ dependencies = [
  "phf 0.10.1",
  "proc-macro2",
  "quote",
- "semver 1.0.17",
+ "semver 1.0.18",
  "serde",
  "serde_json",
  "serde_with",
