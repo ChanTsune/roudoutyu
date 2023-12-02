@@ -5,9 +5,9 @@ export type Descritption = {
     SalaryParSec: string;
     SalaryParSecHolder: string;
   numberError: string;
-    RemainingTime: string;
-    isWorking: string;
-    isNotWorking: string;
+  RemainingTime: string;
+  isWorking: string;
+  isNotWorking: string;
 };
 
 export function initDescription(): Descritption {
@@ -18,8 +18,8 @@ export function initDescription(): Descritption {
         SalaryParSec: "",
         SalaryParSecHolder: "",
     numberError: "",
-        RemainingTime: "",
-        isWorking: "",
-        isNotWorking: "",
+    RemainingTime: "",
+    isWorking: "",
+    isNotWorking: "",
   };
 }

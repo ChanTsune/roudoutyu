@@ -7,7 +7,7 @@ export const ja: Descritption = {
     SalaryParSec: "秒間の増加額を入力",
     SalaryParSecHolder: "Enter a salary par seconds...",
   numberError: "数値で入力してください",
-    RemainingTime: "労働残り時間",
-    isWorking: "Working",
-    isNotWorking: "Not working",
+  RemainingTime: "労働残り時間",
+  isWorking: "Working",
+  isNotWorking: "Not working",
 };
