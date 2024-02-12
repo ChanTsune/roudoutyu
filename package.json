@@ -21,7 +21,7 @@
     "@next/eslint-plugin-next": "^14.1.0",
     "@tauri-apps/cli": "^1.5.9",
     "@types/node": "^20.10.0",
-    "@types/react": "^18.2.43",
+    "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
