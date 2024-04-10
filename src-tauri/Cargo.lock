@@ -2865,7 +2865,7 @@ dependencies = [
 
 [[package]]
 name = "roudoutyu"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "github_release_check",
  "semver 1.0.22",
