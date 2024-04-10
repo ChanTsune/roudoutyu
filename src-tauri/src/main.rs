@@ -2,7 +2,6 @@
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
-use crate::version::is_this_latest_version;
 use tauri::{CustomMenuItem, Menu, MenuEntry, Submenu};
 
 mod version;
@@ -43,7 +42,7 @@ fn main() {
                 MENU_UPDATE_CHECK => {
                     event
                         .window()
-                        .emit("check-update", is_this_latest_version())
+                        .emit_and_trigger("tauri://update", ())
                         .unwrap();
                 }
                 m => println!("{}", m),

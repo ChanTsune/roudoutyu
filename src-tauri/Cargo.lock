@@ -1258,21 +1258,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "github_release_check"
-version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "72d844a6756d43f47e42a0c2bfc8995ef7fa1d22472e69717e8cb316cc7c46c8"
-dependencies = [
- "log",
- "once_cell",
- "regex",
- "reqwest",
- "semver 1.0.22",
- "serde",
- "thiserror",
-]
-
-[[package]]
 name = "glib"
 version = "0.15.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2873,8 +2858,6 @@ dependencies = [
 name = "roudoutyu"
 version = "0.4.0"
 dependencies = [
- "github_release_check",
- "semver 1.0.22",
  "serde",
  "serde_json",
  "tauri",
