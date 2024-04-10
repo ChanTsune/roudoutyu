@@ -1,15 +1,20 @@
 name: "publish"
 on:
   push:
-    branches:
-      - release
+    tags:
+      - "**[0-9]+.[0-9]+.[0-9]+*"
 
 jobs:
   publish-tauri:
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
         platform: [macos-latest, ubuntu-latest, windows-latest]
+        include:
+          - platform: macos-latest
+            args: "--target universal-apple-darwin"
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -19,9 +24,9 @@ jobs:
       with:
         node-version: 20
     - name: install Rust stable
-      uses: actions-rs/toolchain@v1
+      uses: dtolnay/rust-toolchain@stable
       with:
-        toolchain: stable
+        targets: aarch64-apple-darwin
     - name: install dependencies (ubuntu only)
       if: matrix.platform == 'ubuntu-latest'
       run: |
@@ -32,9 +37,14 @@ jobs:
     - uses: tauri-apps/tauri-action@v0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+        TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
       with:
-        tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+        tagName: __VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
         releaseName: "App v__VERSION__"
         releaseBody: "See the assets to download this version and install."
         releaseDraft: true
         prerelease: false
+        includeUpdaterJson: true
+        updaterJsonKeepUniversal: true
+        args: ${{ matrix.args }}
