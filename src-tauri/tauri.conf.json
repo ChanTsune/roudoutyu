@@ -50,7 +50,15 @@
       "csp": null
     },
     "updater": {
-      "active": false
+      "active": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDQzNzE3MUQ2MDdBOUVGQTQKUldTazc2a0gxbkZ4UTU2UjdYamdpTzA1N2N4bUZDR21kUVprZWRNTWVrQytLVThsTmZ6bmhYMzAK",
+      "endpoints": [
+        "https://github.com/chantsune/roudoutyu/releases/latest/download/latest.json"
+      ],
+      "dialog": true,
+      "windows": {
+        "installMode": "passive"
+      }
     },
     "windows": [
       {
