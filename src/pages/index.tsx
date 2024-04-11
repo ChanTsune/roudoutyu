@@ -6,6 +6,7 @@ import Image from "next/image";
 import WorkTimer from "../timer";
 import { getLangDescription } from "../i18n/i18n";
 import { useRecoilState } from "recoil";
+import { Button, Select, TextField } from "@radix-ui/themes";
 
 function App() {
   const [time, setTime] = useState("0");
@@ -28,15 +29,15 @@ function App() {
         <div className="row">
         <div>
           <p>{desc.Time}</p>
-          <input
+          <TextField.Root 
             id="time-input"
-            onChange={(e) => {
-              setTime(e.currentTarget.value);
-            }}
-            placeholder={desc.TimePlaceHolder}
-          />
+                      onChange={(e) => {
+                        setTime(e.currentTarget.value);
+                      }}          
+                      placeholder={desc.TimePlaceHolder}
+                      />
           <p>{desc.SalaryParSec}</p>
-          <input
+          <TextField.Root 
             id="salary-input"
             onChange={(e) => {
               setSalaryParSec(e.currentTarget.value);
@@ -45,7 +46,7 @@ function App() {
             placeholder={desc.SalaryParSecHolder}
           />
           <p></p>
-          <button type="button" onClick={() => {
+          <Button type="button" onClick={() => {
             const iTime = parseInt(time);
             if (Number.isInteger(iTime) && iTime > 0 && !Number.isNaN(parseFloat(salaryParSec.toString()))) {
               setStarted(true);
@@ -54,14 +55,15 @@ function App() {
             }
           }}>
             Start
-          </button>
+          </Button>
           <p></p>
-          <button type="button" onClick={() => setLang("en")}>
-            English
-          </button>
-          <button type="button" onClick={() => setLang("ja")}>
-            日本語
-          </button>
+          <Select.Root defaultValue={lang} onValueChange={setLang}>
+            <Select.Trigger/>
+            <Select.Content>
+            <Select.Item value="ja">            日本語</Select.Item>
+            <Select.Item value="en">            English</Select.Item>
+            </Select.Content>
+          </Select.Root>
         </div>
       </div>
       }

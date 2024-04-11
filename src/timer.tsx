@@ -1,5 +1,6 @@
 import { useTimer } from "react-timer-hook";
 import { Descritption } from "./i18n/description";
+import { Button } from "@radix-ui/themes";
 
 const timerFormat = (n: number) => n.toString().padStart(2, "0");
 
@@ -39,10 +40,10 @@ function WorkTimerInternal(
         <br/>
         <p>{isRunning ? desc.isWorking : desc.isNotWorking }</p>
         <h1>{formatter.format(gotMoney)}</h1>
-        <button onClick={start}>Start</button>
-        <button onClick={pause}>Pause</button>
-        <button onClick={resume}>Resume</button>
-        <button
+        <Button onClick={start}>Start</Button>
+        <Button onClick={pause}>Pause</Button>
+        <Button onClick={resume}>Resume</Button>
+        <Button
           onClick={() => {
             // Restarts to 5 minutes timer
             const time = new Date();
@@ -51,7 +52,7 @@ function WorkTimerInternal(
           }}
         >
           Restart
-        </button>
+        </Button>
       </div>
     );
 }
