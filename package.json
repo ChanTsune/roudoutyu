@@ -13,7 +13,7 @@
     "@tauri-apps/api": "^1.5.6",
     "next": "^14.2.3",
     "react": "^18.3.1",
-    "react-dom": "^18.2.0",
+    "react-dom": "^18.3.1",
     "react-timer-hook": "^3.0.7",
     "recoil": "^0.7.7"
   },
@@ -22,7 +22,7 @@
     "@tauri-apps/cli": "^1.5.14",
     "@types/node": "^20.12.7",
     "@types/react": "^18.3.2",
-    "@types/react-dom": "^18.2.25",
+    "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.57.0",
