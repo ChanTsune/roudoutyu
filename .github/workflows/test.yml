@@ -34,3 +34,4 @@ jobs:
           args: "--config src-tauri/test.override.conf.json"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
