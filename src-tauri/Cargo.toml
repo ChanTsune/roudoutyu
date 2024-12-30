@@ -24,7 +24,7 @@ tauri-plugin-process = "2.2.0"
 tauri-plugin-http = "2.0.0-rc"
 tauri-plugin-fs = "2.0.0-rc"
 tauri-plugin-os = "2.0.0-rc"
-tauri-plugin-dialog = "2.0.0-rc"
+tauri-plugin-dialog = "2.2.0"
 
 [features]
 # by default Tauri runs in production mode
