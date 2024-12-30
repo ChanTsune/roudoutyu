@@ -22,7 +22,7 @@ tauri-plugin-notification = "2.0.0-rc"
 tauri-plugin-clipboard-manager = "2.0.0-alpha.2"
 tauri-plugin-process = "2.0.0-rc"
 tauri-plugin-http = "2.0.0-rc"
-tauri-plugin-fs = "2.0.0-rc"
+tauri-plugin-fs = "2.2.0"
 tauri-plugin-os = "2.0.0-rc"
 tauri-plugin-dialog = "2.0.0-rc"
 
