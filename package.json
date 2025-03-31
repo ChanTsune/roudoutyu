@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.1.6",
-    "@tauri-apps/cli": "^2.2.5",
+    "@tauri-apps/cli": "^2.4.0",
     "@types/node": "^22.10.10",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
