@@ -1251,10 +1251,10 @@ react-dom@^18.3.1:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
 
-react-timer-hook@^3.0.7:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/react-timer-hook/-/react-timer-hook-3.0.8.tgz#246e3e809aa02094f40116d72464c9b2a5cd27ce"
-  integrity sha512-bi2e7DhPBU1MRPU4ZHaVqBmgM9e2HK0ae8O2AIqwqjcPo4/qR7lVGQonOQLAKOZPQCJSYfV8F5aBWzOLXElzqQ==
+react-timer-hook@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/react-timer-hook/-/react-timer-hook-4.0.5.tgz#887447dda64da9c9bd1bf13a116951bc37bf0ee4"
+  integrity sha512-elDxx4OIxBTbm4rXSK5cjBHkq06prO2qY9JzoYxOa11AkL3ij69jp0VuDUOqcehEK38CV0uu7FzUKtPVISRLKA==
 
 react@^18.3.1:
   version "18.3.1"
