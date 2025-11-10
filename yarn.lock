@@ -382,10 +382,10 @@
   dependencies:
     "@tauri-apps/api" "^2.0.0"
 
-"@tauri-apps/plugin-notification@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-notification/-/plugin-notification-2.3.1.tgz#c01bead36ff2ce24344077aab860e027ac6f6190"
-  integrity sha512-7gqgfANSREKhh35fY1L4j3TUjUdePmU735FYDqRGeIf8nMXWpcx6j4FhN9/4nYz+m0mv79DCTPLqIPTySggGgg==
+"@tauri-apps/plugin-notification@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-notification/-/plugin-notification-2.3.3.tgz#01581e3abd3bd18200121b213d3e6ebff2967fe2"
+  integrity sha512-Zw+ZH18RJb41G4NrfHgIuofJiymusqN+q8fGUIIV7vyCH+5sSn5coqRv/MWB9qETsUs97vmU045q7OyseCV3Qg==
   dependencies:
     "@tauri-apps/api" "^2.8.0"
 
