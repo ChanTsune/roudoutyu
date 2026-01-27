@@ -21,7 +21,7 @@
     "@tauri-apps/plugin-process": "^2.3.1",
     "@tauri-apps/plugin-shell": "^2.3.1",
     "@tauri-apps/plugin-updater": "^2.9.0",
-    "next": "^16.1.4",
+    "next": "^16.1.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-timer-hook": "^4.0.5",
