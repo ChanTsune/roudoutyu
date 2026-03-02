@@ -22,7 +22,7 @@ tauri-plugin-notification = "2.3.3"
 tauri-plugin-clipboard-manager = "2.3.2"
 tauri-plugin-process = "2.3.0"
 tauri-plugin-http = "2.4.4"
-tauri-plugin-fs = "2.4.1"
+tauri-plugin-fs = "2.4.5"
 tauri-plugin-os = "2.3.2"
 tauri-plugin-dialog = "2.3.2"
 
