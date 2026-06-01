@@ -21,29 +21,43 @@ type PersistedState = {
 };
 
 const STORAGE_KEY = "roudoutyu.workState.v1";
+const STORE_FILE = "work-state.json";
+const STORE_STATE_KEY = "state";
 const MAX_HISTORY_ITEMS = 50;
 
 const isBrowser = () => typeof window !== "undefined";
 
-function readPersistedState(): PersistedState {
+const emptyPersistedState = (): PersistedState => ({
+  version: 1,
+  settings: defaultSettings,
+  history: [],
+});
+
+function normalizePersistedState(
+  parsed: Partial<PersistedState> | undefined
+): PersistedState {
+  return {
+    version: 1,
+    settings: { ...defaultSettings, ...parsed?.settings },
+    currentSession: parsed?.currentSession,
+    history: parsed?.history ?? [],
+  };
+}
+
+function readLegacyLocalState(): PersistedState | undefined {
   if (!isBrowser()) {
-    return { version: 1, settings: defaultSettings, history: [] };
+    return undefined;
   }
 
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) {
-      return { version: 1, settings: defaultSettings, history: [] };
+      return undefined;
     }
     const parsed = JSON.parse(raw) as Partial<PersistedState>;
-    return {
-      version: 1,
-      settings: { ...defaultSettings, ...parsed.settings },
-      currentSession: parsed.currentSession,
-      history: parsed.history ?? [],
-    };
+    return normalizePersistedState(parsed);
   } catch {
-    return { version: 1, settings: defaultSettings, history: [] };
+    return undefined;
   }
 }
 
@@ -66,14 +80,80 @@ async function notifySessionFinished(
   }
 }
 
+async function loadPersistedState(): Promise<PersistedState> {
+  const legacyState = readLegacyLocalState();
+
+  try {
+    const { load } = await import("@tauri-apps/plugin-store");
+    const store = await load(STORE_FILE, {
+      defaults: { [STORE_STATE_KEY]: null },
+      autoSave: false,
+    });
+    const storedState = await store.get<Partial<PersistedState> | null>(
+      STORE_STATE_KEY
+    );
+
+    if (storedState) {
+      return normalizePersistedState(storedState);
+    }
+
+    if (legacyState) {
+      await store.set(STORE_STATE_KEY, legacyState);
+      await store.save();
+      window.localStorage.removeItem(STORAGE_KEY);
+      return legacyState;
+    }
+  } catch {
+    if (legacyState) {
+      return legacyState;
+    }
+  }
+
+  return emptyPersistedState();
+}
+
+async function savePersistedState(state: PersistedState): Promise<void> {
+  try {
+    const { load } = await import("@tauri-apps/plugin-store");
+    const store = await load(STORE_FILE, {
+      defaults: { [STORE_STATE_KEY]: null },
+      autoSave: false,
+    });
+    await store.set(STORE_STATE_KEY, state);
+    await store.save();
+    if (isBrowser()) {
+      window.localStorage.removeItem(STORAGE_KEY);
+    }
+  } catch {
+    if (isBrowser()) {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+  }
+}
+
 export function useWorkSession() {
-  const [state, setState] = useState<PersistedState>(readPersistedState);
+  const [state, setState] = useState<PersistedState>(emptyPersistedState);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
-    if (!isBrowser()) return;
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }, [state]);
+    let cancelled = false;
+    void (async () => {
+      const persistedState = await loadPersistedState();
+      if (!cancelled) {
+        setState(persistedState);
+        setIsLoaded(true);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    void savePersistedState(state);
+  }, [isLoaded, state]);
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1000);
@@ -185,5 +265,6 @@ export function useWorkSession() {
     clearFinishedSession,
     updateSettings,
     clearHistory,
+    isLoaded,
   };
 }

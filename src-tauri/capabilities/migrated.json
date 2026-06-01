@@ -83,6 +83,7 @@
     "process:default",
     "http:default",
     "fs:default",
-    "os:default"
+    "os:default",
+    "store:default"
   ]
 }
