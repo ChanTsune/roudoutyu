@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   AppSettings,
   FinishReason,
@@ -135,6 +135,7 @@ export function useWorkSession() {
   const [state, setState] = useState<PersistedState>(emptyPersistedState);
   const [isLoaded, setIsLoaded] = useState(false);
   const [now, setNow] = useState(() => new Date());
+  const saveQueue = useRef<Promise<void>>(Promise.resolve());
 
   useEffect(() => {
     let cancelled = false;
@@ -152,7 +153,9 @@ export function useWorkSession() {
 
   useEffect(() => {
     if (!isLoaded) return;
-    void savePersistedState(state);
+    saveQueue.current = saveQueue.current
+      .catch(() => undefined)
+      .then(() => savePersistedState(state));
   }, [isLoaded, state]);
 
   useEffect(() => {

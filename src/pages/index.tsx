@@ -1,5 +1,4 @@
-import { FormEvent, useMemo, useState } from "react";
-import { ask } from "@tauri-apps/plugin-dialog";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { getLangDescription } from "../i18n/i18n";
 import { useWorkSession } from "../hooks/useWorkSession";
 import {
@@ -26,14 +25,6 @@ const isToday = (isoDate: string) => {
   const now = new Date();
   return date.toDateString() === now.toDateString();
 };
-
-async function confirmAction(message: string, title: string): Promise<boolean> {
-  try {
-    return await ask(message, title);
-  } catch {
-    return window.confirm(message);
-  }
-}
 
 function HistoryRow({
   item,
@@ -85,6 +76,17 @@ export default function App() {
     settings.defaultHourlyWage.toString()
   );
   const [error, setError] = useState("");
+  const hasSyncedLoadedSettings = useRef(false);
+
+  useEffect(() => {
+    if (!isLoaded || hasSyncedLoadedSettings.current) return;
+    hasSyncedLoadedSettings.current = true;
+    setHours(Math.floor(settings.defaultDurationSeconds / 3600).toString());
+    setMinutes(
+      Math.floor((settings.defaultDurationSeconds % 3600) / 60).toString()
+    );
+    setHourlyWage(settings.defaultHourlyWage.toString());
+  }, [isLoaded, settings.defaultDurationSeconds, settings.defaultHourlyWage]);
 
   const todaySummary = useMemo(() => {
     const todayItems = history.filter((item) => isToday(item.finishedAt));
@@ -120,21 +122,12 @@ export default function App() {
     start(Math.round(durationSeconds), parsedHourlyWage);
   };
 
-  const handleStop = async () => {
-    const confirmed = await confirmAction(
-      "現在のタイマーを終了しますか？",
-      desc.Stop
-    );
-    if (confirmed) {
-      stop("stopped");
-    }
+  const handleStop = () => {
+    stop("stopped");
   };
 
-  const handleClearHistory = async () => {
-    const confirmed = await confirmAction(
-      "履歴をすべて削除しますか？",
-      desc.ClearHistory
-    );
+  const handleClearHistory = () => {
+    const confirmed = window.confirm("履歴をすべて削除しますか？");
     if (confirmed) {
       clearHistory();
     }
@@ -220,9 +213,7 @@ export default function App() {
               <button
                 type="button"
                 className="secondary"
-                onClick={() => {
-                  void handleStop();
-                }}
+                onClick={handleStop}
               >
                 {desc.Stop}
               </button>
@@ -315,9 +306,7 @@ export default function App() {
             <button
               type="button"
               className="text-button"
-              onClick={() => {
-                void handleClearHistory();
-              }}
+              onClick={handleClearHistory}
             >
               {desc.ClearHistory}
             </button>
