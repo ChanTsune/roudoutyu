@@ -73,6 +73,7 @@ export default function App() {
     clearFinishedSession,
     updateSettings,
     clearHistory,
+    isLoaded,
   } = useWorkSession();
   const desc = getLangDescription(settings.language);
 
@@ -142,6 +143,24 @@ export default function App() {
   const hasActiveSession =
     currentSession &&
     (currentSession.status === "running" || currentSession.status === "paused");
+
+  if (!isLoaded) {
+    return (
+      <div className="app-shell">
+        <section className="timer-panel" aria-label={desc.Title}>
+          <div className="panel-header">
+            <div>
+              <p className="eyebrow">{desc.Title}</p>
+              <h1>{desc.Duration}</h1>
+            </div>
+          </div>
+          <div className="active-session">
+            <div className="timer-display">--:--</div>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="app-shell">
