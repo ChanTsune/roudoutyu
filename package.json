@@ -4,7 +4,7 @@
   "version": "0.4.0",
   "scripts": {
     "format": "prettier --write **/*.ts",
-    "lint": "next lint",
+    "lint": "eslint --ext .ts,.tsx src",
     "dev": "next dev -p 1420",
     "build": "next build",
     "tauri": "tauri"

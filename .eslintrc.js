@@ -15,7 +15,6 @@ module.exports = {
     ignorePatterns: ["dist"],
     extends: [
       "plugin:@typescript-eslint/recommended-requiring-type-checking",
-      'plugin:@next/next/recommended',
     ],
     rules: {
       "import/prefer-default-export": "off",
